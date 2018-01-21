@@ -14,8 +14,12 @@ import java.util.ArrayDeque;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView mTodoListRecyclerView;
+    private TodoAdapter mTodoAdapter;
     private TextView mTodoListTextView;
     private EditText mTodoEntryEditText;
+
+
 
     private ArrayDeque<String> mTodoList;
 
@@ -24,18 +28,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTodoList = new ArrayDeque<String>();
-        mTodoListTextView = (TextView)findViewById(R.id.tv_todo_text);
-        mTodoEntryEditText = (EditText)findViewById(R.id.et_todo_entry);
+        mTodoListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mTodoListRecyclerView.setHasFixedSize(true);
 
-        Button addTodoButton = (Button)findViewById(R.id.btn_add_todo);
+        /*mTodoListTextView =
+               (TextView)findViewById(R.id.tv_todo_list);
+
+        */
+        mTodoEntryEditText =
+                (EditText)findViewById(R.id.et_todo_entry);
+
+        Button addTodoButton =
+                (Button)findViewById(R.id.btn_add_todo);
+
+        mTodoAdapter = new TodoAdapter();
+        mTodoListRecyclerView.setAdapter(mTodoAdapter);
+
         addTodoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String todoText = mTodoEntryEditText.getText().toString();
+                String todoText =
+                        mTodoEntryEditText.getText().toString();
                 if (!TextUtils.isEmpty(todoText)) {
-                    mTodoList.push(todoText);
-                    mTodoListTextView.setText("");
+                    mTodoAdapter.addTodo(todoText);
+                    mTodoEntryEditText.setText("");
                     for (String todo : mTodoList) {
                         mTodoListTextView.append(todo + "\n\n");
                     }
@@ -43,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 }
