@@ -2,6 +2,8 @@ package com.example.android.simpletodos;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTodoList = new ArrayDeque<String>();
-        mTodoListTextView = (TextView)findViewById(R.id.tv_todo_list);
+        mTodoListTextView = (TextView)findViewById(R.id.tv_todo_text);
         mTodoEntryEditText = (EditText)findViewById(R.id.et_todo_entry);
 
         Button addTodoButton = (Button)findViewById(R.id.btn_add_todo);
