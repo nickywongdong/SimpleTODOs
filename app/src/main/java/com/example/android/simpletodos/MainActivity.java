@@ -15,51 +15,36 @@ import java.util.ArrayDeque;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mTodoListRecyclerView;
-    private TodoAdapter mTodoAdapter;
-    private TextView mTodoListTextView;
     private EditText mTodoEntryEditText;
 
-
-
-    private ArrayDeque<String> mTodoList;
+    private TodoAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mTodoListRecyclerView = (RecyclerView)findViewById(R.id.rv_todo_list);
+
         mTodoListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mTodoListRecyclerView.setHasFixedSize(true);
 
-        /*mTodoListTextView =
-               (TextView)findViewById(R.id.tv_todo_list);
+        mAdapter = new TodoAdapter();
+        mTodoListRecyclerView.setAdapter(mAdapter);
 
-        */
-        mTodoEntryEditText =
-                (EditText)findViewById(R.id.et_todo_entry);
+        mTodoEntryEditText = (EditText)findViewById(R.id.et_todo_entry);
 
-        Button addTodoButton =
-                (Button)findViewById(R.id.btn_add_todo);
-
-        mTodoAdapter = new TodoAdapter();
-        mTodoListRecyclerView.setAdapter(mTodoAdapter);
-
+        Button addTodoButton = (Button)findViewById(R.id.btn_add_todo);
         addTodoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String todoText =
-                        mTodoEntryEditText.getText().toString();
+                String todoText = mTodoEntryEditText.getText().toString();
                 if (!TextUtils.isEmpty(todoText)) {
-                    mTodoAdapter.addTodo(todoText);
-                    mTodoEntryEditText.setText("");
-                    for (String todo : mTodoList) {
-                        mTodoListTextView.append(todo + "\n\n");
-                    }
+                    mAdapter.addTodo(todoText);
                     mTodoEntryEditText.setText("");
                 }
             }
         });
-
 
     }
 }

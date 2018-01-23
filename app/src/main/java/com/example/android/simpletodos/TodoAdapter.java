@@ -37,7 +37,7 @@ public class TodoAdapter
                                              int viewType) {
         LayoutInflater inflater =
                 LayoutInflater.from(viewGroup.getContext());
-        View view = inflater.inflate(R.layout.todo_list_item, viewGroup,
+        View view = inflater.inflate(R.layout.todo_list_item, viewGroup,        //We can use R class to refer to any in resources
                 false);
         TodoViewHolder viewHolder = new TodoViewHolder(view);
         return viewHolder;
