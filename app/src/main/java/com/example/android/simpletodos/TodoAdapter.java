@@ -24,7 +24,8 @@ public class TodoAdapter
 
     public void addTodo(String todo) {
         mTodoList.add(todo);
-        notifyDataSetChanged();
+        notifyItemInserted(0);  //notify that the item was inserted at position 0 - top of the list
+        //notifyDataSetChanged();
     }
 
     @Override

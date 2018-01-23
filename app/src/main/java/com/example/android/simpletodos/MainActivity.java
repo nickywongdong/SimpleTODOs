@@ -2,6 +2,7 @@ package com.example.android.simpletodos;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -34,8 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
         mTodoEntryEditText = (EditText)findViewById(R.id.et_todo_entry);
 
+
+        mTodoListRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        //Create a button with the id from the .xml
         Button addTodoButton = (Button)findViewById(R.id.btn_add_todo);
-        addTodoButton.setOnClickListener(new View.OnClickListener() {
+        addTodoButton.setOnClickListener(new View.OnClickListener() {   //function that is used when the button is pressed
             @Override
             public void onClick(View v) {
                 String todoText = mTodoEntryEditText.getText().toString();
