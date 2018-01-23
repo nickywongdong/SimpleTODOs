@@ -43,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
         addTodoButton.setOnClickListener(new View.OnClickListener() {   //function that is used when the button is pressed
             @Override
             public void onClick(View v) {
-                String todoText = mTodoEntryEditText.getText().toString();
-                if (!TextUtils.isEmpty(todoText)) {
+                String todoText = mTodoEntryEditText.getText().toString();  //grabbing text from user input
+                if (!TextUtils.isEmpty(todoText)) {     //only add todo if the user entered some input
+                    mTodoListRecyclerView.scrollToPosition(0);  //scroll to the top of the list when adding a new item
                     mAdapter.addTodo(todoText);
                     mTodoEntryEditText.setText("");
                 }
